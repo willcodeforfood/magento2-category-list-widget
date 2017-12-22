@@ -57,7 +57,7 @@ class CategoryWidget extends \Magento\Framework\View\Element\Template implements
     public function getImageWidth()
     {
         if ($this->getData('imagewidth') == '') {
-            return DEFAULT_IMAGE_WIDTH;
+            return self::DEFAULT_IMAGE_WIDTH;
         }
 
         return (int) $this->getData('imagewidth');
@@ -71,7 +71,7 @@ class CategoryWidget extends \Magento\Framework\View\Element\Template implements
     public function getImageHeight()
     {
         if ($this->getData('imageheight') == '') {
-            return DEFAULT_IMAGE_HEIGHT;
+            return self::DEFAULT_IMAGE_HEIGHT;
         }
 
         return (int) $this->getData('imageheight');
