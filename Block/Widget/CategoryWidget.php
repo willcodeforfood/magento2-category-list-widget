@@ -6,8 +6,9 @@ class CategoryWidget extends \Magento\Framework\View\Element\Template implements
 {
     protected $_template = 'widget/categorywidget.phtml';
 
-    const DEFAULT_IMAGE_WIDTH = 250;
+    const DEFAULT_IMAGE_WIDTH  = 250;
     const DEFAULT_IMAGE_HEIGHT = 250;
+    const DEFAULT_DISPLAY_STYLE = 'image-and-text';
 
     /**
      * \Magento\Catalog\Model\CategoryFactory $categoryFactory.
@@ -77,12 +78,21 @@ class CategoryWidget extends \Magento\Framework\View\Element\Template implements
         return (int) $this->getData('imageheight');
     }
 
+    public function getDisplayStyle() {
+        if(empty($this->getData('image'))) {
+            return self::DEFAULT_DISPLAY_STYLE;
+        }
+
+        return $this->getData('image');
+    }
+
     public function canShowImage()
     {
-        if ($this->getData('image') == 'image') {
-            return true;
-        } elseif ($this->getData('image') == 'no-image') {
-            return false;
-        }
+        return in_array($this->getDisplayStyle(), ['image','image-and-text']);
+    }
+
+    public function canShowCategoryName()
+    {
+        return in_array($this->getDisplayStyle(), ['no-image','image-and-text']);
     }
 }
