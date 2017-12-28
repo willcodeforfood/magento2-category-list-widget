@@ -1,6 +1,6 @@
 <?php
-    $categories = $this->getCategoryCollection();
-    $title = $block->getTitle() ? __($block->getTitle()) : 'Categories';
+    $categories = $block->getCategoryCollection();
+    $title = $block->getTitle();
 ?>
 <?php if ($title):?>
     <div class="block-title">
@@ -11,10 +11,10 @@
     <?php foreach($categories as $category):?>
         <span class="category">
             <a href="<?php echo $block->escapeUrl($category->getUrl()) ?>">
-                <?php if($this->canShowImage() && $category->getImageUrl()):?>
-                    <img src="<?php echo $block->escapeUrl($category->getImageUrl()) ?>" alt="" width="<?=$this->getImageWidth();?>" height="<?=$this->getImageHeight()?>"/>
+                <?php if($block->canShowImage() && $category->getImageUrl()):?>
+                    <img src="<?php echo $block->escapeUrl($category->getImageUrl()) ?>" alt="" width="<?=$block->getImageWidth();?>" height="<?=$block->getImageHeight()?>"/>
                 <?php endif;?>
-                <?php if($this->canShowCategoryName()):?>
+                <?php if($block->canShowCategoryName()):?>
                     <span class="cat-title"><?php echo $block->escapeHtml($category->getName()) ?></span>
                 <?php endif;?>
             </a>
